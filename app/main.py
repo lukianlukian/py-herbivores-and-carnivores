@@ -13,7 +13,7 @@ class AliveList(list):
 
 
 class Animal:
-    alive: AliveList = AliveList()
+    alive: AliveList = AliveList()  # This should be annotated as AliveList[Animal] if possible
 
     def __init__(
         self,
@@ -23,7 +23,7 @@ class Animal:
         self.name: str = name
         self.health: int = health
         self.hidden: bool = False
-        # Only add to alive list if health > 0
+        # FIX: Only add to alive list if health > 0
         if self.health > 0:
             Animal.alive.append(self)
 
@@ -52,9 +52,8 @@ class Herbivore(Animal):
 class Carnivore(Animal):
     def bite(
         self,
-        victim: Herbivore,  # Changed from Animal to Herbivore
+        victim: Herbivore,  # FIX: Changed from Animal to Herbivore
     ) -> None:
-        # Only bite if victim is a Herbivore, not hidden, and alive
         if (
             isinstance(victim, Herbivore)
             and not victim.hidden
