@@ -23,7 +23,9 @@ class Animal:
         self.name: str = name
         self.health: int = health
         self.hidden: bool = False
-        Animal.alive.append(self)
+        # Only add to alive list if health > 0
+        if self.health > 0:
+            Animal.alive.append(self)
 
     def die(
         self,
@@ -50,8 +52,9 @@ class Herbivore(Animal):
 class Carnivore(Animal):
     def bite(
         self,
-        victim: Animal,
+        victim: Herbivore,  # Changed from Animal to Herbivore
     ) -> None:
+        # Only bite if victim is a Herbivore, not hidden, and alive
         if (
             isinstance(victim, Herbivore)
             and not victim.hidden
