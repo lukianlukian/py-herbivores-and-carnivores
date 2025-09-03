@@ -13,7 +13,7 @@ class AliveList(list):
 
 
 class Animal:
-    alive: AliveList = AliveList()  # This should be annotated as AliveList[Animal] if possible
+    alive: AliveList = AliveList()
 
     def __init__(
         self,
