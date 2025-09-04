@@ -1,18 +1,13 @@
 from __future__ import annotations
 
 
-class AliveList(list):
-    def __repr__(self) -> str:  # або __str__, обидва працюватимуть
-        return "[" + ", ".join(repr(animal) for animal in self) + "]"
-
-
 class Animal:
-    alive: AliveList = AliveList()
+    alive: list[Animal] = []
 
     def __init__(self, name: str, health: int = 100) -> None:
-        self.name = name
-        self.health = health
-        self.hidden = False
+        self.name: str = name
+        self.health: int = health
+        self.hidden: bool = False
         if self.health > 0:
             Animal.alive.append(self)
 
